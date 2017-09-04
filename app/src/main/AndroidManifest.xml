@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.supets.map.led2">
 
-
+    <!--语音合成-->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -12,6 +12,13 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+    <!--语音识别-->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -32,6 +39,18 @@
         <activity
             android:name=".activity.ColorPickerActivity"
             android:screenOrientation="landscape" />
+
+        <!--语音识别-->
+        <meta-data
+            android:name="com.baidu.speech.APP_ID"
+            android:value="10048422" />
+        <meta-data
+            android:name="com.baidu.speech.API_KEY"
+            android:value="NZ3OHLrAcxriOzZqbwG8NCeMf9EMQI5l" />
+        <meta-data
+            android:name="com.baidu.speech.SECRET_KEY"
+            android:value="j56EKIgLwbRzfjFvSaIocPzloEUFb6Tn" />
+        <service android:name="com.baidu.speech.VoiceRecognitionService" android:exported="false" />
     </application>
 
 </manifest>
