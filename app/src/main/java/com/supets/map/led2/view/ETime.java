@@ -40,7 +40,7 @@ public class ETime extends TextView {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-     //   canvas.drawColor(TimeConfig.getBackColor());
+        //   canvas.drawColor(TimeConfig.getBackColor());
 
         paint.setAntiAlias(true);
         paint.setStrokeWidth(2);
@@ -118,18 +118,28 @@ public class ETime extends TextView {
     private boolean isshowKong = false;
 
 
-    public void updateData() {
+    public void updateData(TimeCallBack callBack) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
         int shi = calendar.get(Calendar.HOUR);
         int miao = calendar.get(Calendar.MINUTE);
         dian = !dian;
+        ampm = calendar.get(Calendar.AM_PM);
+
+        if (rom[0] != 8) {
+            if (callBack != null) {
+                callBack.onTime((rom[0] * 10 + rom[1]) != shi, ampm == 0,shi);
+            }
+        }
+
         rom[0] = shi / 10;
         rom[1] = shi % 10;
         rom[2] = miao / 10;
         rom[3] = miao % 10;
-        ampm = calendar.get(Calendar.AM_PM);
     }
 
+    public interface TimeCallBack {
+        void onTime(boolean wholeDian, boolean am,int time);
+    }
 
 }

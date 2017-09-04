@@ -1,6 +1,5 @@
 package com.supets.map.led2.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,7 +18,7 @@ import com.supets.map.led2.view.ETime;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaiduSoundActivity implements ETime.TimeCallBack {
 
     private static final int UPDATE_TIME = 0X1100;
     private ETime mTimeLcd;
@@ -44,7 +43,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
 
-                int visible=mSetLay.getVisibility() == View.GONE ? View.VISIBLE : View.GONE;
+                int visible = mSetLay.getVisibility() == View.GONE ? View.VISIBLE : View.GONE;
 
                 mSetLay.setVisibility(visible);
                 mLightLay.setVisibility(visible);
@@ -137,7 +136,7 @@ public class MainActivity extends Activity {
             mTimerTask = new TimerTask() {
                 @Override
                 public void run() {
-                    mTimeLcd.updateData();
+                    mTimeLcd.updateData(MainActivity.this);
                     sendMessage(UPDATE_TIME);
                 }
             };
@@ -164,6 +163,31 @@ public class MainActivity extends Activity {
         if (mHandler != null) {
             Message message = Message.obtain(mHandler, id);
             mHandler.sendMessage(message);
+        }
+    }
+
+    @Override
+    public void onTime(boolean wholeDian, boolean am, int time) {
+
+        if (wholeDian) {
+            String temp = "";
+
+            if (am && (time == 0)) {
+                temp = "晚上12点整";
+            } else if (!am && (time == 0)) {
+                temp = "中午12点整";
+            } else if (am && (time < 6)) {
+                temp = "凌晨" + time + "点整";
+            } else if (am && (time < 9)) {
+                temp = "早上" + time + "点整";
+            } else if (am && (time <= 11)) {
+                temp = "上午" + time + "点整";
+            } else if (!am && (time < 7)) {
+                temp = "下午" + time + "点整";
+            } else if (!am && (time <= 11)) {
+                temp = "晚上" + time + "点整";
+            }
+            playSound(temp);
         }
     }
 
