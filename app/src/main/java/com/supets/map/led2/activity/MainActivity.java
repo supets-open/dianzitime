@@ -177,7 +177,7 @@ public class MainActivity extends BaiduSoundActivity implements ETime.TimeCallBa
             } else if (!am && (time == 0)) {
                 temp = "中午12点整";
             } else if (am && (time < 6)) {
-                temp = "凌晨" + time + "点整";
+               // temp = "凌晨" + time + "点整";
             } else if (am && (time < 9)) {
                 temp = "早上" + time + "点整";
             } else if (am && (time <= 11)) {

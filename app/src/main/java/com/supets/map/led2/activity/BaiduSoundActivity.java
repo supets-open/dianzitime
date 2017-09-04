@@ -3,6 +3,7 @@ package com.supets.map.led2.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.baidu.tts.auth.AuthInfo;
@@ -141,40 +142,45 @@ public class BaiduSoundActivity extends Activity implements SpeechSynthesizerLis
 
     public void onError(String arg0, SpeechError arg1) {
         // 监听到出错，在此添加相关操作
-        Log.v("baidu", "onError"+arg0+arg1.toString());
+        Log.v("baidu", "onError" + arg0 + arg1.toString());
     }
 
     public void onSpeechFinish(String arg0) {
         // 监听到播放结束，在此添加相关操作
-        Log.v("baidu", "onSpeechFinish"+arg0);
+        Log.v("baidu", "onSpeechFinish" + arg0);
     }
 
     public void onSpeechProgressChanged(String arg0, int arg1) {
         // 监听到播放进度有变化，在此添加相关操作
-        Log.v("baidu", "onSpeechProgressChanged"+arg0+"=="+arg1);
+        Log.v("baidu", "onSpeechProgressChanged" + arg0 + "==" + arg1);
     }
 
     public void onSpeechStart(String arg0) {
         // 监听到合成并播放开始，在此添加相关操作
-        Log.v("baidu", "onSpeechStart"+arg0);
+        Log.v("baidu", "onSpeechStart" + arg0);
     }
 
     public void onSynthesizeDataArrived(String arg0, byte[] arg1, int arg2) {
         // 监听到有合成数据到达，在此添加相关操作
-        Log.v("baidu", "onSynthesizeDataArrived"+arg0+"=="+new String(arg1)+"=="+arg2);
+        Log.v("baidu", "onSynthesizeDataArrived" + arg0 + "==" + new String(arg1) + "==" + arg2);
     }
 
     public void onSynthesizeFinish(String arg0) {
         // 监听到合成结束，在此添加相关操作
-        Log.v("baidu", "onSynthesizeFinish"+arg0);
+        Log.v("baidu", "onSynthesizeFinish" + arg0);
     }
 
     public void onSynthesizeStart(String arg0) {
         // 监听到合成开始，在此添加相关操作
-        Log.v("baidu", "onSynthesizeStart"+arg0);
+        Log.v("baidu", "onSynthesizeStart" + arg0);
     }
 
     public void playSound(String text) {
+
+        if (TextUtils.isEmpty(text)) {
+            return;
+        }
+
         if (mSpeechSynthesizer != null) {
             mSpeechSynthesizer.speak(text);
         }
