@@ -177,15 +177,26 @@ public class MainActivity extends BaiduSoundActivity implements ETime.TimeCallBa
             } else if (!am && (time == 0)) {
                 temp = "中午12点整";
             } else if (am && (time < 6)) {
-               // temp = "凌晨" + time + "点整";
+                // temp = "凌晨" + time + "点整";
             } else if (am && (time < 9)) {
-                temp = "早上" + time + "点整";
+                if (time == 6) {
+                    temp = "早上" + time + "点整别睡了起来锻炼身体了";
+                }
+                if (time == 7) {
+                    temp = "早上" + time + "点整别睡了起来吃饭了,上班快迟到了";
+                }
+                if (time == 8) {
+                    temp = "早上" + time + "点整别睡了起来吃饭了上班了";
+                }
+
             } else if (am && (time <= 11)) {
                 temp = "上午" + time + "点整";
             } else if (!am && (time < 7)) {
                 temp = "下午" + time + "点整";
+            } else if (!am && (time < 9)) {
+                temp = "晚上" + time + "点整吃饭时间了";
             } else if (!am && (time <= 11)) {
-                temp = "晚上" + time + "点整";
+                temp = "晚上" + time + "点整早睡早起身体棒";
             }
             playSound(temp);
         }
