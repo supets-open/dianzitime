@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:colorpicker="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
+    android:orientation="horizontal">
+
+    <com.colorpicker.ColorPickView
+        android:id="@+id/color_picker_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        colorpicker:center_color="#FFFFFF"
+        colorpicker:center_radius="10dp"
+        colorpicker:circle_radius="150dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:background="#fff"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txt_color"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@color/bcd_color"
+            android:gravity="center"
+            android:textColor="#000"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/save"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ok" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="all"
+            android:gravity="center"
+            android:text="来源:https://fir.im/dianzitime"
+            android:textColor="#000"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+</LinearLayout>
