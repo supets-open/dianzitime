@@ -29,17 +29,23 @@
         android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
         <activity
             android:name="com.supets.map.led2.activity.MainActivity"
-            android:screenOrientation="landscape">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="landscape" />
 
         <activity
             android:name=".activity.ColorPickerActivity"
             android:screenOrientation="landscape" />
 
+        <activity
+            android:name=".activity.BaiduASRUIactivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.BaiduASR2activity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <!--语音识别-->
         <meta-data
             android:name="com.baidu.speech.APP_ID"
@@ -50,7 +56,10 @@
         <meta-data
             android:name="com.baidu.speech.SECRET_KEY"
             android:value="j56EKIgLwbRzfjFvSaIocPzloEUFb6Tn" />
-        <service android:name="com.baidu.speech.VoiceRecognitionService" android:exported="false" />
+
+        <service
+            android:name="com.baidu.speech.VoiceRecognitionService"
+            android:exported="false" />
     </application>
 
 </manifest>

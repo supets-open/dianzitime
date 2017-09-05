@@ -13,15 +13,15 @@ import android.widget.SeekBar;
 import com.supets.map.led2.R;
 import com.supets.map.led2.utils.ScreenLightUtils;
 import com.supets.map.led2.utils.WakeScreenUtils;
-import com.supets.map.led2.view.ETime;
+import com.supets.map.led2.view.BcdTimeView;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends BaiduSoundActivity implements ETime.TimeCallBack {
+public class MainActivity extends BaiduSoundActivity implements BcdTimeView.TimeCallBack {
 
     private static final int UPDATE_TIME = 0X1100;
-    private ETime mTimeLcd;
+    private BcdTimeView mTimeLcd;
     private View mTimeLay;
     private ViewGroup mSetLay, mLightLay;
     private View mClose;

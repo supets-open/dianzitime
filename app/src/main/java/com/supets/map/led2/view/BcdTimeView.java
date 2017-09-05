@@ -14,19 +14,19 @@ import com.supets.map.led2.storge.TimeConfig;
 import java.util.Calendar;
 import java.util.Date;
 
-public class ETime extends TextView {
+public class BcdTimeView extends TextView {
 
     private Paint paint = new Paint();
 
-    public ETime(Context context) {
+    public BcdTimeView(Context context) {
         super(context);
     }
 
-    public ETime(Context context, @Nullable AttributeSet attrs) {
+    public BcdTimeView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public ETime(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public BcdTimeView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
