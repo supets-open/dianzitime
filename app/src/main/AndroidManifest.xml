@@ -45,21 +45,12 @@
         <activity
             android:name=".activity.BaiduVoiceRecogTestActivity"
             android:label="@string/app_name3"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait" />
+
         <activity
             android:name=".activity.BaiduWakeUpTestactivity"
             android:label="@string/app_name2"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait" />
         <!--语音识别-->
         <meta-data
             android:name="com.baidu.speech.APP_ID"
@@ -70,7 +61,6 @@
         <meta-data
             android:name="com.baidu.speech.SECRET_KEY"
             android:value="j56EKIgLwbRzfjFvSaIocPzloEUFb6Tn" />
-
         <service
             android:name="com.baidu.speech.VoiceRecognitionService"
             android:exported="false" />
