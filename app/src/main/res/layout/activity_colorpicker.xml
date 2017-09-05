@@ -44,9 +44,31 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:autoLink="all"
-            android:gravity="center"
-            android:text="来源:https://fir.im/dianzitime"
+            android:gravity="left"
+            android:text="版本更新  https://fir.im/dianzitime"
+            android:textColor="#000"
+            android:textSize="20sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:autoLink="all"
+            android:gravity="left"
+            android:text="作者QQ：254608684"
+            android:textColor="#000"
+            android:textSize="20sp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:autoLink="all"
+            android:gravity="left"
+            android:text="@string/desc"
             android:textColor="#000"
             android:textSize="20sp" />
     </LinearLayout>

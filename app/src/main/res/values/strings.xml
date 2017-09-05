@@ -2,4 +2,7 @@
     <string name="app_name">电子表</string>
     <string name="app_name2">语音唤醒</string>
     <string name="app_name3">语音识别</string>
+    <string name="desc">功能描述:\n
+            1 持语音指令：关闭语音，语音播放，增大亮度，减小亮度.\n
+            2 设置字颜色</string>
 </resources>
