@@ -128,7 +128,7 @@ public class BcdTimeView extends TextView {
 
         if (rom[0] != 8) {
             if (callBack != null) {
-                callBack.onTime((rom[0] * 10 + rom[1]) != shi, ampm == 0,shi);
+                callBack.onTime((rom[0] * 10 + rom[1]) != shi, ampm == 0, shi);
             }
         }
 
@@ -138,8 +138,12 @@ public class BcdTimeView extends TextView {
         rom[3] = miao % 10;
     }
 
+    public String getData() {
+        return (ampm == 0 ? "上午" : "下午") + (rom[0] * 10 + rom[1]) + "点" + (rom[2] * 10 + rom[3]) + "分";
+    }
+
     public interface TimeCallBack {
-        void onTime(boolean wholeDian, boolean am,int time);
+        void onTime(boolean wholeDian, boolean am, int time);
     }
 
 }
