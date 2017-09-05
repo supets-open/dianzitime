@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.supets.map.led2.R;
 
-public class BaiduASR2activity extends BaiduwakeUpActivity {
+public class BaiduWakeUpTestactivity extends BaiduwakeUpActivity {
 
     protected TextView txtLog;
     protected Button btn;

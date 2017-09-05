@@ -11,7 +11,7 @@ import com.supets.map.led2.R;
 import com.supets.map.led2.baiduaudio.params.CommonRecogParams;
 import com.supets.map.led2.baiduaudio.params.OfflineRecogParams;
 
-public class BaiduASRUIactivity extends BaiduVoiceRecogActivity {
+public class BaiduVoiceRecogTestActivity extends BaiduVoiceRecogActivity {
 
     protected TextView txtLog;
     protected Button btn;
@@ -36,6 +36,7 @@ public class BaiduASRUIactivity extends BaiduVoiceRecogActivity {
                 uistart();
             }
         });
+
     }
 
     protected void handleMsg(Message msg) {

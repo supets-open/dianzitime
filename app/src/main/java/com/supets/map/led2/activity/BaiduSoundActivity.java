@@ -1,6 +1,5 @@
 package com.supets.map.led2.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
 import android.text.TextUtils;
@@ -18,8 +17,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-
-public class BaiduSoundActivity extends Activity implements SpeechSynthesizerListener {
+public class BaiduSoundActivity extends BaiduwakeUpActivity implements SpeechSynthesizerListener {
     // 语音合成客户端
     private SpeechSynthesizer mSpeechSynthesizer;
 

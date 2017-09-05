@@ -20,7 +20,7 @@ import java.util.Map;
 public abstract class BaiduVoiceRecogActivity extends Activity implements IStatus {
 
     private MyRecognizer myRecognizer;
-    boolean enableoffline = false;
+    boolean enableoffline = true;
     private Handler handler;
 
     protected CommonRecogParams apiParams;//仅仅用于生成调用START的json字符串

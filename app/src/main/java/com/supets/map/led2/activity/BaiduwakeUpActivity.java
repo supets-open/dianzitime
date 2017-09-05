@@ -11,6 +11,7 @@ import com.supets.map.led2.baiduaudio.wakeup.MyWakeup;
 import com.supets.map.led2.baiduaudio.wakeup.SimpleWakeupListener;
 import com.supets.map.led2.baiduaudio.wakeup.WakeUpResult;
 import com.supets.map.led2.baiduaudio.wakeup.WakeupParams;
+import com.supets.map.led2.utils.ScreenLightUtils;
 
 import java.util.Map;
 
@@ -31,11 +32,13 @@ public class BaiduwakeUpActivity extends Activity implements IStatus{
             @Override
             public void onSuccess(String word, WakeUpResult result) {
                 super.onSuccess(word, result);
-                Toast.makeText(BaiduwakeUpActivity.this, "唤醒成功"+word, Toast.LENGTH_SHORT).show();
+                if ("增大亮度".equals(word)){
+                    ScreenLightUtils.setLight(BaiduwakeUpActivity.this,100);
+                }
+                if ("减小亮度".equals(word)){
+                    ScreenLightUtils.setLight(BaiduwakeUpActivity.this,0);
+                }
             }
-
-
-
         };
         myWakeup = new MyWakeup(this, listener);
     }
@@ -49,6 +52,18 @@ public class BaiduwakeUpActivity extends Activity implements IStatus{
     public void stop() {
         myWakeup.stop();
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        start();
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        stop();
+//    }
 
     @Override
     protected void onDestroy() {

@@ -20,8 +20,8 @@ public class WakeupParams {
         Map<String, Object> params = new HashMap<>();
         params.put(SpeechConstant.WP_WORDS_FILE, "assets:///WakeUp.bin");
 
-        params.put(SpeechConstant.ACCEPT_AUDIO_DATA, true);
-        params.put(SpeechConstant.ACCEPT_AUDIO_VOLUME, true);
+        //params.put(SpeechConstant.ACCEPT_AUDIO_DATA, true);
+        //params.put(SpeechConstant.ACCEPT_AUDIO_VOLUME, true);
         //params.put(SpeechConstant.IN_FILE, "assets:///test/16k_test.pcm");
         return params;
     }

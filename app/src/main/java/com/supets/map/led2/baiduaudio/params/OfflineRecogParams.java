@@ -34,7 +34,7 @@ public class OfflineRecogParams extends CommonRecogParams {
         Map<String, Object> map = new HashMap<String, Object>();
         map.put(SpeechConstant.DECODER, 2);
         map.put(SpeechConstant.ASR_OFFLINE_ENGINE_GRAMMER_FILE_PATH, "asset:///baidu_speech_grammar.bsg");
-        map.putAll(fetchSlotDataParam());
+       // map.putAll(fetchSlotDataParam());
         return map;
     }
 

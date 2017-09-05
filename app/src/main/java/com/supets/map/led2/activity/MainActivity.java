@@ -107,12 +107,14 @@ public class MainActivity extends BaiduSoundActivity implements BcdTimeView.Time
     protected void onResume() {
         super.onResume();
         startTimer();
+        start();//开启唤醒
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         stopTimer();
+        stop();//停止唤醒
     }
 
     private Timer mTimer;

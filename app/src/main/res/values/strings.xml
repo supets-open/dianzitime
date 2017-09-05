@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">电子表</string>
+    <string name="app_name2">语音唤醒</string>
+    <string name="app_name3">语音识别</string>
 </resources>
