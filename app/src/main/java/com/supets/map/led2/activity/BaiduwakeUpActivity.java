@@ -32,12 +32,7 @@ public class BaiduwakeUpActivity extends Activity implements IStatus{
             @Override
             public void onSuccess(String word, WakeUpResult result) {
                 super.onSuccess(word, result);
-                if ("增大亮度".equals(word)){
-                    ScreenLightUtils.setLight(BaiduwakeUpActivity.this,100);
-                }
-                if ("减小亮度".equals(word)){
-                    ScreenLightUtils.setLight(BaiduwakeUpActivity.this,0);
-                }
+              autoCmd(word);
             }
         };
         myWakeup = new MyWakeup(this, listener);
@@ -47,6 +42,10 @@ public class BaiduwakeUpActivity extends Activity implements IStatus{
         WakeupParams wakeupParams = new WakeupParams(this);
         Map<String,Object> params = wakeupParams.fetch();
         myWakeup.start(params);
+    }
+
+    public void  autoCmd(String word){
+
     }
 
     public void stop() {

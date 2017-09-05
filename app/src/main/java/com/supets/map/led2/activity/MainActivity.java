@@ -27,6 +27,8 @@ public class MainActivity extends BaiduSoundActivity implements BcdTimeView.Time
     private View mClose;
     private View mSet;
 
+    private int lightvaule = 0;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +81,7 @@ public class MainActivity extends BaiduSoundActivity implements BcdTimeView.Time
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int vaule, boolean b) {
+                lightvaule = vaule;
                 ScreenLightUtils.setLight(MainActivity.this, vaule);
             }
 
@@ -93,7 +96,7 @@ public class MainActivity extends BaiduSoundActivity implements BcdTimeView.Time
             }
         });
 
-        ScreenLightUtils.setLight(MainActivity.this, 0);
+        ScreenLightUtils.setLight(MainActivity.this, lightvaule);
     }
 
     private void anim(View view, int animid) {
@@ -171,38 +174,70 @@ public class MainActivity extends BaiduSoundActivity implements BcdTimeView.Time
     @Override
     public void onTime(boolean wholeDian, boolean am, int time) {
 
-        if (wholeDian) {
-            String temp = "";
+        if (isOpenBaoshi) {
 
-            if (am && (time == 0)) {
-                temp = "晚上12点整";
-            } else if (!am && (time == 0)) {
-                temp = "中午12点整";
-            } else if (am && (time < 6)) {
-                // temp = "凌晨" + time + "点整";
-            } else if (am && (time < 9)) {
-                if (time == 6) {
-                    temp = "早上" + time + "点整,别睡了,起来锻炼身体了";
-                }
-                if (time == 7) {
-                    temp = "早上" + time + "点整,别睡了,起来吃饭了,上班快迟到了";
-                }
-                if (time == 8) {
-                    temp = "早上" + time + "点整,别睡了,起来吃饭了,上班了";
-                }
+            if (wholeDian) {
+                String temp = "";
 
-            } else if (am && (time <= 11)) {
-                temp = "上午" + time + "点整";
-            } else if (!am && (time < 7)) {
-                temp = "下午" + time + "点整";
-            } else if (!am && (time < 9)) {
-                temp = "晚上" + time + "点整,吃饭时间了";
-            } else if (!am && (time <= 11)) {
-                temp = "晚上" + time + "点整,早睡早起身体棒";
+                if (am && (time == 0)) {
+                    temp = "晚上12点整";
+                } else if (!am && (time == 0)) {
+                    temp = "中午12点整";
+                } else if (am && (time < 6)) {
+                    // temp = "凌晨" + time + "点整";
+                } else if (am && (time < 9)) {
+                    if (time == 6) {
+                        temp = "早上" + time + "点整";
+                    }
+                    if (time == 7) {
+                        temp = "早上" + time + "点整";
+                    }
+                    if (time == 8) {
+                        temp = "早上" + time + "点整";
+                    }
+
+                } else if (am && (time <= 11)) {
+                    temp = "上午" + time + "点整";
+                } else if (!am && (time < 7)) {
+                    temp = "下午" + time + "点整";
+                } else if (!am && (time < 9)) {
+                    temp = "晚上" + time + "点整";
+                } else if (!am && (time <= 11)) {
+                    temp = "晚上" + time + "点整";
+                }
+                playSound(temp);
             }
-            playSound(temp);
+
         }
     }
 
+    boolean isOpenBaoshi = true;
+
+    @Override
+    public void autoCmd(String word) {
+        super.autoCmd(word);
+        if ("增大亮度".equals(word)) {
+            lightvaule += 10;
+            lightvaule = lightvaule > 255 ? 255 : lightvaule;
+            ScreenLightUtils.setLight(this, lightvaule);
+            playSound("当前亮度" + lightvaule);
+        }
+        if ("减小亮度".equals(word)) {
+            lightvaule -= 10;
+            lightvaule = lightvaule < 0 ? 0 : lightvaule;
+            ScreenLightUtils.setLight(this, lightvaule);
+            playSound("当前亮度" + lightvaule);
+        }
+
+        if ("关闭报时".equals(word)) {
+            isOpenBaoshi = false;
+            playSound("关闭报时");
+        }
+        if ("打开报时".equals(word)) {
+            isOpenBaoshi = true;
+            playSound("打开报时");
+        }
+
+    }
 }
 
