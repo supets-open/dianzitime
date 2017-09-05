@@ -229,13 +229,13 @@ public class MainActivity extends BaiduSoundActivity implements BcdTimeView.Time
             playSound("当前亮度" + lightvaule);
         }
 
-        if ("关闭报时".equals(word)) {
+        if ("关闭语音".equals(word)) {
             isOpenBaoshi = false;
-            playSound("关闭报时");
+            playSound("整点报时关闭");
         }
-        if ("打开报时".equals(word)) {
+        if ("语音播放".equals(word)) {
             isOpenBaoshi = true;
-            playSound("打开报时");
+            playSound("整点报时打开");
         }
 
     }

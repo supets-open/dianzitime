@@ -160,7 +160,7 @@ public class BaiduSoundActivity extends BaiduwakeUpActivity implements SpeechSyn
 
     public void onSynthesizeDataArrived(String arg0, byte[] arg1, int arg2) {
         // 监听到有合成数据到达，在此添加相关操作
-        Log.v("baidu", "onSynthesizeDataArrived" + arg0 + "==" + new String(arg1) + "==" + arg2);
+        Log.v("baidu", "onSynthesizeDataArrived" + arg0);
     }
 
     public void onSynthesizeFinish(String arg0) {
