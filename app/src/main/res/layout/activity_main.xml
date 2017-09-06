@@ -13,7 +13,7 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <com.supets.map.led2.view.BcdTimeView
+        <com.supets.map.led2.view.BcdTimeView2
             android:id="@+id/lcd1602"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

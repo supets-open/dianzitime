@@ -14,19 +14,22 @@ import com.supets.map.led2.storge.TimeConfig;
 import java.util.Calendar;
 import java.util.Date;
 
-public class BcdTimeView extends TextView {
+
+//w+h=3p   2w+3h  22p  18p  假w=5h
+
+public class BcdTimeView2 extends TextView {
 
     private Paint paint = new Paint();
 
-    public BcdTimeView(Context context) {
+    public BcdTimeView2(Context context) {
         super(context);
     }
 
-    public BcdTimeView(Context context, @Nullable AttributeSet attrs) {
+    public BcdTimeView2(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public BcdTimeView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public BcdTimeView2(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -34,66 +37,47 @@ public class BcdTimeView extends TextView {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         setMeasuredDimension(MeasureSpec.getSize(widthMeasureSpec),
-                (int) (MeasureSpec.getSize(widthMeasureSpec) * 6.6f / 22));//H=2W+3H决定
+                (int) (MeasureSpec.getSize(widthMeasureSpec) * 13f / 36));
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
         //   canvas.drawColor(TimeConfig.getBackColor());
-
         paint.setAntiAlias(true);
         paint.setStrokeWidth(2);
-
-        int P = getWidth() / 22;
-
+        int P = getWidth() / 18;
         drawBCD(canvas, paint, P);
-        drawampm(canvas, paint, P);
         drawdian(canvas, paint, P);
-    }
-
-    private void drawampm(Canvas canvas, Paint paint, int p) {
-        paint.setTextSize(p);
-        paint.setColor(TimeConfig.getTimeColor());
-
-        if (ampm == 0) {
-            canvas.drawText("AM", 0, p + p / 2, paint);
-        } else if (ampm == 1) {
-            canvas.drawText("PM", 0, p + 4 * p, paint);
-        } else {
-            canvas.drawText("PM", 0, p + 4 * p, paint);
-            canvas.drawText("AM", 0, p + p / 2, paint);
-        }
     }
 
     private void drawdian(Canvas canvas, Paint paint, int p) {
         if (dian) {
             paint.setColor(TimeConfig.getTimeColor());
             paint.setStyle(Paint.Style.FILL);
-            canvas.drawCircle(13 * p, (float) (1.5 * p), (float) (0.5*p), paint);
-            canvas.drawCircle(13 * p, (float) (4.5 * p),  (float) (0.5*p), paint);
+            canvas.drawCircle(9 * p, (float) (1.5 * p), (float) (0.5*p), paint);
+            canvas.drawCircle(9 * p, (float) (4.5 * p), (float) (0.5*p), paint);
         } else if (isshowKong) {
             paint.setColor(TimeConfig.getTimeColor());
             paint.setStyle(Paint.Style.STROKE);
-            canvas.drawCircle(13 * p, (float) (1.5 * p),  (float) (0.5*p), paint);
-            canvas.drawCircle(13 * p, (float) (4.5 * p),  (float) (0.5*p), paint);
+            canvas.drawCircle(9 * p, (float) (1.5 * p), (float) (0.5*p), paint);
+            canvas.drawCircle(9 * p, (float) (4.5 * p), (float) (0.5*p), paint);
         }
     }
 
     private void drawBCD(Canvas canvas, Paint paint, int P) {
 
         Point[] xy = new Point[]{
-                new Point(4 * P, 0),
-                new Point((int) (8.5 * P), 0),
-                new Point((int) (14.5 * P), 0),
-                new Point(19 * P, 0),
+                new Point(0, 0),
+                new Point((int) (4.5 * P), 0),
+                new Point((int) (10.5 * P), 0),
+                new Point(15 * P, 0),
         };
 
 
         for (int j = 0; j < 4; j++) {
             Point point = xy[j];
-            Path[] path2 = BCD.buildBCDW4H(P, point.x, point.y);
+            Path[] path2 = BCD.buildBCDW5H(P, point.x, point.y);
             for (int i = 0; i < 7; i++) {
                 Path d = path2[i];
                 boolean is = BCD.isBitLight(BCD.getNum(rom[j]), i);
@@ -105,6 +89,7 @@ public class BcdTimeView extends TextView {
                     paint.setStyle(Paint.Style.STROKE);
                     paint.setColor(TimeConfig.getTimeColor());
                     canvas.drawPath(d, paint);
+
                 }
             }
         }
@@ -121,14 +106,16 @@ public class BcdTimeView extends TextView {
     public void updateData(TimeCallBack callBack) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-        int shi = calendar.get(Calendar.HOUR);
+        int shi0 = calendar.get(Calendar.HOUR);
         int miao = calendar.get(Calendar.MINUTE);
         dian = !dian;
         ampm = calendar.get(Calendar.AM_PM);
 
+        int shi = (ampm == 1) ? shi0 + 12 : 0;
+
         if (rom[0] != 8) {
             if (callBack != null) {
-                callBack.onTime((rom[0] * 10 + rom[1]) != shi, ampm == 0, shi);
+                callBack.onTime((rom[0] * 10 + rom[1]) != shi, ampm == 0, shi0);
             }
         }
 
@@ -141,5 +128,6 @@ public class BcdTimeView extends TextView {
     public String getData() {
         return (ampm == 0 ? "上午" : "下午") + (rom[0] * 10 + rom[1]) + "点" + (rom[2] * 10 + rom[3]) + "分";
     }
+
 
 }

@@ -13,21 +13,22 @@ import android.widget.SeekBar;
 import com.supets.map.led2.R;
 import com.supets.map.led2.utils.ScreenLightUtils;
 import com.supets.map.led2.utils.WakeScreenUtils;
-import com.supets.map.led2.view.BcdTimeView;
+import com.supets.map.led2.view.BcdTimeView2;
+import com.supets.map.led2.view.TimeCallBack;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class MainActivity extends BaiduSoundActivity implements BcdTimeView.TimeCallBack {
+public class MainActivity extends BaiduSoundActivity implements TimeCallBack {
 
     private static final int UPDATE_TIME = 0X1100;
-    private BcdTimeView mTimeLcd;
+    private BcdTimeView2 mTimeLcd;
     private View mTimeLay;
     private ViewGroup mSetLay, mLightLay;
     private View mClose;
     private View mSet;
 
-    private int lightvaule = 0;
+    private int lightvaule = 128;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,6 +79,7 @@ public class MainActivity extends BaiduSoundActivity implements BcdTimeView.Time
 
         SeekBar seekBar = findViewById(R.id.mSeekBar);
         seekBar.setMax(255);
+        seekBar.setProgress(lightvaule);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int vaule, boolean b) {
@@ -105,7 +107,6 @@ public class MainActivity extends BaiduSoundActivity implements BcdTimeView.Time
         animation.start();
     }
 
-    //////////////////////////
     @Override
     protected void onResume() {
         super.onResume();

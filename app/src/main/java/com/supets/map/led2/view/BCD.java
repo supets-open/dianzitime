@@ -1,6 +1,7 @@
 package com.supets.map.led2.view;
 
 import android.graphics.Path;
+import android.support.annotation.NonNull;
 
 public class BCD {
 
@@ -27,28 +28,33 @@ public class BCD {
     }
 
 
-    //宽22个单位  高6个单位  以宽为基准
-    //字宽W+2H  字高3h+2W  W=4H 关系。
-    //字宽本来占3个单位==》H=1/44W0单位 W=1/11W0
-    public static Path[] buildBCD(int width, int x0, int y0) {
+    //宽22个单位
+    //字宽W+H=3p  字高3h+2W  W=4H 关系。
+    public static Path[] buildBCDW4H(int P, int x0, int y0) {
+        int h = (int) (0.6 * P);
+        int w = 4 * h;
+        return getPaths(x0, y0, h, w);
+    }
 
+    //宽18个单位
+    //字宽W+H=3p  字高3h+2W  W=5H 关系。
+    public static Path[] buildBCDW5H(int P, int x0, int y0) {
+        int h = (int) (0.5 * P);
+        int w = 5 * h;
+        return getPaths(x0, y0, h, w);
+    }
+
+    @NonNull
+    private static Path[] getPaths(int x0, int y0, int h, int w) {
         Path[] paths = new Path[7];
-
-        int w = width / 11;
-        int h = width / 44;
-
-        paths[0] = getHBCD(w, h, x0 + h/2, y0 + h / 2);//A
-        paths[3] = getHBCD(w, h, x0 + h/2, y0 +w+h+w+h+ h / 2);//D
-        paths[6] = getHBCD(w, h, x0 + h/2, y0 + h / 2 + w + h);//G
-
-        paths[1] = getLBCD(w, h, x0 +  w + h / 2, y0 + h);//B
-        paths[2] = getLBCD(w, h, x0 +  w + h / 2, y0 + w + h + h);//C
+        paths[0] = getHBCD(w, h, x0 + h / 2, y0 + h / 2);//A
+        paths[3] = getHBCD(w, h, x0 + h / 2, y0 + w + h + w + h + h / 2);//D
+        paths[6] = getHBCD(w, h, x0 + h / 2, y0 + h / 2 + w + h);//G
+        paths[1] = getLBCD(w, h, x0 + w + h / 2, y0 + h);//B
+        paths[2] = getLBCD(w, h, x0 + w + h / 2, y0 + w + h + h);//C
         paths[4] = getLBCD(w, h, x0 + h / 2, y0 + w + h + h);//E
-        paths[5] = getLBCD(w, h, x0 + h /2, y0 + h);//F
-
-
+        paths[5] = getLBCD(w, h, x0 + h / 2, y0 + h);//F
         return paths;
-
     }
 
 
