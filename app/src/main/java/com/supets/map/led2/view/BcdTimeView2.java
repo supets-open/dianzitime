@@ -111,7 +111,7 @@ public class BcdTimeView2 extends TextView {
         dian = !dian;
         ampm = calendar.get(Calendar.AM_PM);
 
-        int shi = (ampm == 1) ? shi0 + 12 : 0;
+        int shi = (ampm == 1) ? shi0 + 12 : shi0;
 
         if (rom[0] != 8) {
             if (callBack != null) {
