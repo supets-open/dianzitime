@@ -22,6 +22,22 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <!-- 注册使用短信发送和接收功能 -->
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <!--拍照-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-feature android:name="android.hardware.camera" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -41,6 +57,15 @@
         <activity
             android:name=".activity.ColorPickerActivity"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".camera.BaseCameraActivity"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
 
         <activity
             android:name=".activity.BaiduVoiceRecogTestActivity"
@@ -61,9 +86,20 @@
         <meta-data
             android:name="com.baidu.speech.SECRET_KEY"
             android:value="j56EKIgLwbRzfjFvSaIocPzloEUFb6Tn" />
+
         <service
             android:name="com.baidu.speech.VoiceRecognitionService"
             android:exported="false" />
+        <!-- 静态注册系统短信广播接收器 -->
+        <receiver android:name="com.supets.map.led2.sms.SmsRecerver">
+            <!-- 系统短信广播拦截器 -->
+            <!-- 设置短信监听的优先级别最高 -->
+            <intent-filter android:priority="1000">
+                <!-- 指定系统接收短信时广播的action -->
+                <!-- 指定该广播接收器具有处理短信广播的能力 -->
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
