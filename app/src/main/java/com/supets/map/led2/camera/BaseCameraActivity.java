@@ -27,7 +27,7 @@ public class BaseCameraActivity extends BaseSmsActivity implements Camera.Previe
     Camera mCammera;
     SurfaceView mSurfaceView;
     SurfaceHolder mSurfaceHolder;
-    int mCammeraId = 0;
+    int mCammeraId = 1;
     private int width = 1280;
     private int height = 720;
 
